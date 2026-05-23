@@ -4,3 +4,13 @@
 @theme inline {
   --font-sans: "Noto Sans", sans-serif;
 }
+
+body {
+  margin: 0;
+  overflow: hidden;
+}
+
+canvas {
+  position: fixed;
+  inset: 0;
+}

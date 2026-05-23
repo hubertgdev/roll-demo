@@ -26,6 +26,7 @@
     "@side-xp/biome-config": "^1.2.1",
     "@tailwindcss/vite": "^4.3.0",
     "@types/node": "^25.8.0",
+    "@types/three": "^0.184.1",
     "husky": "^9.1.7",
     "jsdom": "^29.1.1",
     "lint-staged": "^17.0.4",
@@ -35,7 +36,9 @@
     "vitest": "^4.1.6"
   },
   "dependencies": {
+    "@dimforge/rapier3d-compat": "^0.19.3",
     "@fontsource/noto-sans": "^5.2.10",
-    "tailwindcss": "^4.3.0"
+    "tailwindcss": "^4.3.0",
+    "three": "^0.184.0"
   }
 }

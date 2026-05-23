@@ -14,6 +14,9 @@ export default defineConfig({
   define: {
     __APP_VERSION__: JSON.stringify(process.env.npm_package_version),
   },
+  optimizeDeps: {
+    exclude: ['@dimforge/rapier3d-compat'],
+  },
   test: {
     environment: 'jsdom',
     passWithNoTests: true,

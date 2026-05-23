@@ -1,3 +1,10 @@
+import RAPIER from '@dimforge/rapier3d-compat'
+import { App } from './app'
 import './style.css'
 
-console.log(`Ready! Version: ${__APP_VERSION__}`)
+await RAPIER.init()
+
+const app = new App()
+app.start()
+
+document.getElementById('roll-btn')?.addEventListener('click', () => app.roll())
