@@ -5,8 +5,8 @@ import { DIE_SIZE, Die } from './die'
 import { createDieTextures } from './textures'
 
 const WALL_HALF_H = 4
-const IMPULSE_MIN = 5
-const IMPULSE_RANGE = 7
+const IMPULSE_MIN = 10
+const IMPULSE_RANGE = 10
 
 // Returns the minimum orthographic frustum height so the isometric camera
 // (positioned at (1,1,1) normalized) shows ±worldHalf units on both X and Z axes.
@@ -47,10 +47,8 @@ export class App {
     this.camera.lookAt(0, 0, 0)
 
     this.setupLighting()
+    this.world = new RAPIER.World({ x: 0, y: -25, z: 0 })
     this.setupFloor()
-
-    // No gravity — Y translation is locked on all dice
-    this.world = new RAPIER.World({ x: 0, y: 0, z: 0 })
 
     const textures = createDieTextures()
     // BoxGeometry face order: +X, -X, +Y, -Y, +Z, -Z → assign 3,4,1,6,2,5
@@ -90,11 +88,20 @@ export class App {
   }
 
   private setupFloor() {
+    const floorY = -DIE_SIZE / 2
     const floor = new THREE.Mesh(new THREE.PlaneGeometry(200, 200), new THREE.MeshLambertMaterial({ color: 0x1a3028 }))
     floor.rotation.x = -Math.PI / 2
-    floor.position.y = -DIE_SIZE / 2
+    floor.position.y = floorY
     floor.receiveShadow = true
     this.scene.add(floor)
+
+    // Physics floor: top surface aligned with visual floor at floorY
+    const floorHalfH = 0.5
+    const floorBody = this.world.createRigidBody(RAPIER.RigidBodyDesc.fixed().setTranslation(0, floorY - floorHalfH, 0))
+    this.world.createCollider(
+      RAPIER.ColliderDesc.cuboid(60, floorHalfH, 60).setRestitution(0.2).setFriction(0.6),
+      floorBody,
+    )
   }
 
   private resize() {

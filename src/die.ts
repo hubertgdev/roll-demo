@@ -17,9 +17,8 @@ export class Die {
     this.body = world.createRigidBody(
       RAPIER.RigidBodyDesc.dynamic()
         .setTranslation(position.x, 0, position.z)
-        .setLinearDamping(1.8)
-        .setAngularDamping(2.4)
-        .enabledTranslations(true, false, true),
+        .setLinearDamping(0.3)
+        .setAngularDamping(0.8),
     )
     world.createCollider(RAPIER.ColliderDesc.cuboid(h, h, h).setRestitution(0.35).setFriction(0.4), this.body)
   }
@@ -27,8 +26,9 @@ export class Die {
   roll(impulseX: number, impulseZ: number) {
     this.body.setLinvel({ x: 0, y: 0, z: 0 }, true)
     this.body.setAngvel({ x: 0, y: 0, z: 0 }, true)
-    this.body.applyImpulse({ x: impulseX, y: 0, z: impulseZ }, true)
-    const t = 10
+    const upImpulse = 10 + Math.random() * 10
+    this.body.applyImpulse({ x: impulseX, y: upImpulse, z: impulseZ }, true)
+    const t = 18
     this.body.applyTorqueImpulse(
       { x: (Math.random() - 0.5) * t, y: (Math.random() - 0.5) * t, z: (Math.random() - 0.5) * t },
       true,
