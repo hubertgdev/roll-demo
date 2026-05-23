@@ -33,14 +33,14 @@ jobs:
       - run: npm test
       - run: npm run build
 
-  # This job runs only on push to `main` or `master`, uses `semantic-release`
-  # to bump the package version, and deploy the app to Cloudflare Pages.
+  # This job runs only on push to `develop`, uses `semantic-release`
+  # to bump the package version, and deploy the app to GitHub Pages.
   release-deploy:
     name: Release & deploy
     needs: check
     if: >
       github.event_name == 'push'
-      && (github.ref == 'refs/heads/main' || github.ref == 'refs/heads/master')
+      && github.ref == 'refs/heads/develop'
     runs-on: ubuntu-latest
     permissions:
       contents: write
