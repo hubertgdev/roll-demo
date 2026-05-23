@@ -8,7 +8,8 @@
   </head>
   <body>
     <div class="fixed bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-4">
-      <div class="flex items-center gap-6">
+      <div class="flex items-center gap-3">
+        <span class="text-white/40 text-xs uppercase tracking-widest w-10 text-right shrink-0">Force</span>
         <label class="flex flex-col items-center gap-1">
           <span class="text-white/50 text-xs uppercase tracking-widest">Min</span>
           <input
@@ -26,6 +27,31 @@
             id="max-force"
             type="number"
             value="20"
+            min="1"
+            step="1"
+            class="w-20 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-3 py-2 text-white text-center text-sm font-medium"
+          />
+        </label>
+      </div>
+      <div class="flex items-center gap-3">
+        <span class="text-white/40 text-xs uppercase tracking-widest w-10 text-right shrink-0">Spin</span>
+        <label class="flex flex-col items-center gap-1">
+          <span class="text-white/50 text-xs uppercase tracking-widest">Min</span>
+          <input
+            id="min-torque"
+            type="number"
+            value="10"
+            min="1"
+            step="1"
+            class="w-20 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-3 py-2 text-white text-center text-sm font-medium"
+          />
+        </label>
+        <label class="flex flex-col items-center gap-1">
+          <span class="text-white/50 text-xs uppercase tracking-widest">Max</span>
+          <input
+            id="max-torque"
+            type="number"
+            value="30"
             min="1"
             step="1"
             class="w-20 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-3 py-2 text-white text-center text-sm font-medium"

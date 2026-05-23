@@ -7,13 +7,15 @@ await RAPIER.init()
 const app = new App()
 app.start()
 
-function readForce(id: string, fallback: number): number {
+function readInput(id: string, fallback: number): number {
   const el = document.getElementById(id)
   return el instanceof HTMLInputElement ? Math.max(1, Number(el.value)) : fallback
 }
 
 document.getElementById('roll-btn')?.addEventListener('click', () => {
-  const min = readForce('min-force', 10)
-  const max = readForce('max-force', 20)
-  app.roll(Math.min(min, max), Math.max(min, max))
+  const minF = readInput('min-force', 10)
+  const maxF = readInput('max-force', 20)
+  const minT = readInput('min-torque', 10)
+  const maxT = readInput('max-torque', 30)
+  app.roll(Math.min(minF, maxF), Math.max(minF, maxF), Math.min(minT, maxT), Math.max(minT, maxT))
 })

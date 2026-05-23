@@ -164,11 +164,11 @@ export class App {
     }
   }
 
-  roll(minForce: number, maxForce: number) {
+  roll(minForce: number, maxForce: number, minTorque: number, maxTorque: number) {
     for (const die of this.dice) {
       const angle = Math.random() * Math.PI * 2
       const mag = minForce + Math.random() * (maxForce - minForce)
-      die.roll(Math.cos(angle) * mag, Math.sin(angle) * mag)
+      die.roll(Math.cos(angle) * mag, Math.sin(angle) * mag, minTorque, maxTorque)
     }
   }
 
