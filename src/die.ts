@@ -26,8 +26,7 @@ export class Die {
   roll(impulseX: number, impulseZ: number) {
     this.body.setLinvel({ x: 0, y: 0, z: 0 }, true)
     this.body.setAngvel({ x: 0, y: 0, z: 0 }, true)
-    const upImpulse = 10 + Math.random() * 10
-    this.body.applyImpulse({ x: impulseX, y: upImpulse, z: impulseZ }, true)
+    this.body.applyImpulse({ x: impulseX, y: 0, z: impulseZ }, true)
     const t = 18
     this.body.applyTorqueImpulse(
       { x: (Math.random() - 0.5) * t, y: (Math.random() - 0.5) * t, z: (Math.random() - 0.5) * t },

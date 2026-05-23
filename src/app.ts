@@ -8,15 +8,9 @@ const WALL_HALF_H = 4
 const IMPULSE_MIN = 10
 const IMPULSE_RANGE = 10
 
-// Returns the minimum orthographic frustum height so the isometric camera
-// (positioned at (1,1,1) normalized) shows ±worldHalf units on both X and Z axes.
-// Camera right = (1/√2, 0, -1/√2), up = (1/√6, -2/√6, 1/√6).
-// Max projection of corner (±W, 0, ±W) on right-axis = W√2
-// Max projection of corner (±W, 0, ±W) on up-axis   = 2W/√6
+// Top-down orthographic: frustum maps 1:1 to world units on the XZ plane.
 function minFrustumHeight(worldHalf: number, aspect: number): number {
-  const forHeight = (worldHalf * 4) / Math.sqrt(6)
-  const forWidth = (worldHalf * 2 * Math.SQRT2) / aspect
-  return Math.max(forHeight, forWidth) * 1.14
+  return Math.max(worldHalf * 2, (worldHalf * 2) / aspect) * 1.1
 }
 
 export class App {
@@ -41,9 +35,10 @@ export class App {
     this.scene = new THREE.Scene()
     this.scene.background = new THREE.Color(0x182218)
 
-    // Isometric orthographic camera; frustum is set in resize()
+    // True top-down orthographic camera; frustum is set in resize()
     this.camera = new THREE.OrthographicCamera(-1, 1, 1, -1, 0.1, 200)
-    this.camera.position.set(10, 10, 10)
+    this.camera.up.set(0, 0, -1)
+    this.camera.position.set(0, 20, 0)
     this.camera.lookAt(0, 0, 0)
 
     this.setupLighting()
