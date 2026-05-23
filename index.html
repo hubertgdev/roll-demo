@@ -7,13 +7,39 @@
     <title>Roll Demo</title>
   </head>
   <body>
-    <button
-      id="roll-btn"
-      type="button"
-      class="fixed bottom-8 left-1/2 -translate-x-1/2 z-10 bg-white/10 backdrop-blur-sm border border-white/20 text-white px-10 py-4 rounded-full text-base font-semibold tracking-widest uppercase hover:bg-white/20 active:scale-95 transition-all cursor-pointer shadow-lg select-none touch-none"
-    >
-      Roll
-    </button>
+    <div class="fixed bottom-8 left-1/2 -translate-x-1/2 z-10 flex flex-col items-center gap-4">
+      <div class="flex items-center gap-6">
+        <label class="flex flex-col items-center gap-1">
+          <span class="text-white/50 text-xs uppercase tracking-widest">Min</span>
+          <input
+            id="min-force"
+            type="number"
+            value="10"
+            min="1"
+            step="1"
+            class="w-20 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-3 py-2 text-white text-center text-sm font-medium"
+          />
+        </label>
+        <label class="flex flex-col items-center gap-1">
+          <span class="text-white/50 text-xs uppercase tracking-widest">Max</span>
+          <input
+            id="max-force"
+            type="number"
+            value="20"
+            min="1"
+            step="1"
+            class="w-20 bg-white/10 backdrop-blur-sm border border-white/20 rounded-lg px-3 py-2 text-white text-center text-sm font-medium"
+          />
+        </label>
+      </div>
+      <button
+        id="roll-btn"
+        type="button"
+        class="bg-white/10 backdrop-blur-sm border border-white/20 text-white px-10 py-4 rounded-full text-base font-semibold tracking-widest uppercase hover:bg-white/20 active:scale-95 transition-all cursor-pointer shadow-lg select-none touch-none"
+      >
+        Roll
+      </button>
+    </div>
     <script type="module" src="/src/main.ts"></script>
   </body>
 </html>

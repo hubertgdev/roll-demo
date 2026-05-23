@@ -5,8 +5,6 @@ import { DIE_SIZE, Die } from './die'
 import { createDieTextures } from './textures'
 
 const WALL_HALF_H = 4
-const IMPULSE_MIN = 10
-const IMPULSE_RANGE = 10
 
 // Top-down orthographic: frustum maps 1:1 to world units on the XZ plane.
 function minFrustumHeight(worldHalf: number, aspect: number): number {
@@ -166,10 +164,10 @@ export class App {
     }
   }
 
-  roll() {
+  roll(minForce: number, maxForce: number) {
     for (const die of this.dice) {
       const angle = Math.random() * Math.PI * 2
-      const mag = IMPULSE_MIN + Math.random() * IMPULSE_RANGE
+      const mag = minForce + Math.random() * (maxForce - minForce)
       die.roll(Math.cos(angle) * mag, Math.sin(angle) * mag)
     }
   }
